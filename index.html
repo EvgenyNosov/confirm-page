@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Подтверждение платежа</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 30px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Вы уверены, что хотите подтвердить платёж?</h1>
+  <form action="https://constructorbot.chatapp.online/api/request/" method="get">
+    <input type="hidden" name="token" value="aef4ca3c-bb5c-4392-91fc-1d829557f998" />
+    <input type="hidden" name="template_id" value="12924" />
+    <input type="hidden" name="original_chat_id" value="{{original_chat_id}}" />
+    <input type="hidden" name="result" value="Y" />
+    <button type="submit">✅ Подтвердить</button>
+  </form>
+
+  <form action="https://constructorbot.chatapp.online/api/request/" method="get">
+    <input type="hidden" name="token" value="aef4ca3c-bb5c-4392-91fc-1d829557f998" />
+    <input type="hidden" name="template_id" value="12924" />
+    <input type="hidden" name="original_chat_id" value="{{original_chat_id}}" />
+    <input type="hidden" name="result" value="N" />
+    <button type="submit">❌ Отказать</button>
+  </form>
+</body>
+</html>
