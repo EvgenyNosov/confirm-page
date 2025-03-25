@@ -3,18 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <title>Подтверждение платежа</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: sans-serif;
-      text-align: center;
-      margin-top: 100px;
+      display: flex;
+      flex-direction: column;
     }
-    button {
-      font-size: 18px;
-      padding: 10px 30px;
-      margin: 10px;
-      border-radius: 8px;
+
+    h1 {
+      text-align: center;
+      margin: 30px 20px;
+      font-size: 24px;
+    }
+
+    .confirm-button {
+      flex: 1;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 20px;
+      width: 100%;
       cursor: pointer;
+    }
+
+    .cancel-button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      font-size: 20px;
+      padding: 15px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .bottom {
+      margin-top: auto;
     }
   </style>
   <script>
@@ -24,9 +52,8 @@
 
       const url = `https://constructorbot.chatapp.online/api/request/?token=aef4ca3c-bb5c-4392-91fc-1d829557f998&template_id=12924&original_chat_id=${original_chat_id}&result=${result}`;
 
-      fetch(url); // отправили — и забыли
+      fetch(url); // просто отправляем без обработки
 
-      // показать сообщение и закрыть окно
       document.body.innerHTML = `<h1>${result === 'Y' ? '✅ Платёж подтверждён' : '❌ Платёж отменён'}</h1>`;
       setTimeout(closeWindow, 1500);
     }
@@ -41,8 +68,12 @@
   </script>
 </head>
 <body>
-  <h1>Хотите подтвердить платёж?</h1>
-  <button onclick="sendWebhook('Y')">✅ Подтвердить</button>
-  <button onclick="sendWebhook('N')">❌ Отказать</button>
+  <h1>Подтвердите платёж</h1>
+
+  <button class="confirm-button" onclick="sendWebhook('Y')">✅ Подтвердить</button>
+
+  <div class="bottom">
+    <button class="cancel-button" onclick="sendWebhook('N')">❌ Отказать</button>
+  </div>
 </body>
 </html>
