@@ -22,28 +22,20 @@
       const params = new URLSearchParams(window.location.search);
       const original_chat_id = params.get("original_chat_id");
 
-      if (!original_chat_id) {
-        alert("original_chat_id отсутствует!");
-        return;
-      }
-
       const url = `https://constructorbot.chatapp.online/api/request/?token=aef4ca3c-bb5c-4392-91fc-1d829557f998&template_id=12924&original_chat_id=${original_chat_id}&result=${result}`;
 
-      fetch(url)
-        .then(() => {
-          document.body.innerHTML = `<h1>${result === 'Y' ? '✅ Платёж подтверждён' : '❌ Платёж отменён'}</h1>`;
-          setTimeout(closeWindow, 2000);
-        })
-        .catch(() => {
-          document.body.innerHTML = "<h1>⚠️ Произошла ошибка при отправке</h1>";
-        });
+      fetch(url); // отправили — и забыли
+
+      // показать сообщение и закрыть окно
+      document.body.innerHTML = `<h1>${result === 'Y' ? '✅ Платёж подтверждён' : '❌ Платёж отменён'}</h1>`;
+      setTimeout(closeWindow, 1500);
     }
 
     function closeWindow() {
       if (window.Telegram && window.Telegram.WebApp) {
         window.Telegram.WebApp.close();
       } else {
-        window.close(); // В браузере не сработает без user gesture
+        window.close();
       }
     }
   </script>
